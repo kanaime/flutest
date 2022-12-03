@@ -13,6 +13,7 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -21,10 +22,15 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.dispose();
   }
 
+// FUTURE CONNEXION
+
   Future singIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim());
+    setState(() {
+      isLoading = false;
+    });
   }
 
   // This widget is the root of your application.
@@ -43,62 +49,69 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             drawer: myDrawer(context),
             body: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 70),
-                    child: const FlutterLogo(
-                      size: 40,
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(90.0),
+              child: isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 70),
+                          child: const FlutterLogo(
+                            size: 40,
+                          ),
                         ),
-                        labelText: 'Email',
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    child: TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(90.0),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: TextField(
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(90.0),
+                              ),
+                              labelText: 'Email',
+                            ),
+                          ),
                         ),
-                        labelText: 'Password',
-                      ),
-                    ),
-                  ),
-                  Container(
-                      height: 80,
-                      padding: const EdgeInsets.all(20),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: TextField(
+                            controller: passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(90.0),
+                              ),
+                              labelText: 'Password',
+                            ),
+                          ),
                         ),
-                        child: const Text('Log In'),
-                        onPressed: () {
-                          singIn();
-                        },
-                      )),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
+                        Container(
+                            height: 80,
+                            padding: const EdgeInsets.all(20),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size.fromHeight(50),
+                              ),
+                              child: const Text('Log In'),
+                              onPressed: () {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                                singIn();
+                              },
+                            )),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Forgot Password?',
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
             )));
   }
 }

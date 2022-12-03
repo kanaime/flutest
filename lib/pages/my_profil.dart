@@ -14,7 +14,7 @@ class MyPageLogin extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: myAppBar("Home Page", context),
+        child: myAppBar("My profil", context),
       ),
       drawer: myDrawer(context),
       body: Padding(
@@ -33,15 +33,16 @@ class MyPageLogin extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                ),
-                icon: const Icon(Icons.arrow_back, size: 32),
-                label: const Text(
-                  'Sign out',
-                  style: TextStyle(fontSize: 24),
-                ),
-                onPressed: () {})
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),
+              ),
+              icon: const Icon(Icons.arrow_back, size: 32),
+              label: const Text(
+                'Sign out',
+                style: TextStyle(fontSize: 24),
+              ),
+              onPressed: () => FirebaseAuth.instance.signOut(),
+            )
           ],
         ),
       ),
