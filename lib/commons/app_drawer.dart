@@ -1,5 +1,6 @@
 import 'package:flutest/main.dart';
 import 'package:flutest/pages/register.dart';
+import 'package:flutest/pages/test_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -48,6 +49,26 @@ Widget myDrawer(BuildContext context) {
                     ),
                     label: const Text(
                       'Liste client',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: TextButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Register(),
+                          ));
+                    },
+                    icon: const Icon(
+                      Icons.login,
+                      size: 24,
+                      color: Colors.black,
+                    ),
+                    label: const Text(
+                      'S enregistrer',
                       style: TextStyle(color: Colors.black),
                     ),
                   ),

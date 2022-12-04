@@ -1,37 +1,52 @@
-import 'package:flutest/pages/register.dart';
+import 'package:flutest/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutest/commons/appBar.dart';
 import 'package:flutest/commons/app_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+class RegisterWidget extends StatefulWidget {
+  const RegisterWidget({super.key});
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<RegisterWidget> createState() => _RegisterWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _RegisterWidgetState extends State<RegisterWidget> {
+  // final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isLoading = false;
 
   @override
   void dispose() {
+    // nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
 
-// FUTURE CONNEXION
+// FUTURE INSCRIPTION
 
-  Future singIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
-    setState(() {
-      isLoading = false;
-    });
+  Future signUp() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+      /*
+      setState(() {
+        isLoading = false;
+      });
+      */
+      setStateIfMounted() {
+        if (mounted)
+          setState() {
+            isLoading = false;
+          }
+        ;
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 
   // This widget is the root of your application.
@@ -46,11 +61,12 @@ class _LoginWidgetState extends State<LoginWidget> {
             backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(50),
-              child: myAppBar("Login", context),
+              child: myAppBar("Register", context),
             ),
             drawer: myDrawer(context),
             resizeToAvoidBottomInset: false,
             body: SingleChildScrollView(
+                child: Center(
               child: isLoading
                   ? const Center(
                       child: CircularProgressIndicator(),
@@ -62,7 +78,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(20, 20, 20, 70),
                           child: const FlutterLogo(
-                            size: 40,
+                            size: 60,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: TextField(
+                            // controller: emailController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(90.0),
+                              ),
+                              labelText: 'Name',
+                            ),
                           ),
                         ),
                         Container(
@@ -91,18 +119,30 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ),
                         ),
                         Container(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: TextField(
+                            // controller: emailController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(90.0),
+                              ),
+                              labelText: 'Confirm Password',
+                            ),
+                          ),
+                        ),
+                        Container(
                             height: 80,
                             padding: const EdgeInsets.all(20),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size.fromHeight(50),
                               ),
-                              child: const Text('Log In'),
+                              child: const Text('sign up'),
                               onPressed: () {
                                 setState(() {
                                   isLoading = true;
                                 });
-                                singIn();
+                                signUp();
                               },
                             )),
                         TextButton(
@@ -110,16 +150,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Register(),
+                                  builder: (context) => const MyLogin(),
                                 ));
                           },
                           child: Text(
-                            'Or Sign up',
-                            style: TextStyle(color: Colors.grey[600]),
+                            'Already an account Login',
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: Colors.grey[600]),
                           ),
                         ),
                       ],
                     ),
-            )));
+            ))));
   }
 }
