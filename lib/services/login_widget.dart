@@ -25,13 +25,36 @@ class _LoginWidgetState extends State<LoginWidget> {
 
 // FUTURE CONNEXION
 
-  Future singIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
-    setState(() {
-      isLoading = false;
-    });
+  Future signIn() async {
+    // on tente la connexion
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+
+      // on ferme la modale loading
+
+      setState(() {
+        isLoading = false;
+      });
+
+      // s'il y a une erreur on la traite ici
+
+    } on FirebaseAuthException catch (e) {
+      //on ferme la modale de loading
+
+      setState(() {
+        isLoading = false;
+      });
+      // on ecrit le message d'erreur si ca passe pas
+
+      // ignore: avoid_print
+      String errorMessenger = e.message.toString();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessenger), backgroundColor: Colors.red));
+    }
   }
 
   // This widget is the root of your application.
@@ -102,7 +125,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 setState(() {
                                   isLoading = true;
                                 });
-                                singIn();
+                                signIn();
                               },
                             )),
                         TextButton(

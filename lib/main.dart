@@ -1,3 +1,4 @@
+import 'package:flutest/pages/home.dart';
 import 'package:flutest/pages/test_form.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -52,13 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //set drawer from app_drawer.dart
         //set like this where ever you want
-        body: ElevatedButton(
-            onPressed: (() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MyForm()),
-              );
-            }),
-            child: const Text('aller au formulaire')));
+        body: const TodoApp());
   }
 }

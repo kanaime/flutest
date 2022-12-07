@@ -1,4 +1,5 @@
 import 'package:flutest/main.dart';
+import 'package:flutest/pages/client_list.dart';
 import 'package:flutest/pages/register.dart';
 import 'package:flutest/pages/test_form.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,7 +40,7 @@ Widget myDrawer(BuildContext context) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MyForm(),
+                            builder: (context) => const ListingClient(),
                           ));
                     },
                     icon: const Icon(
@@ -73,6 +74,27 @@ Widget myDrawer(BuildContext context) {
                     ),
                   ),
                 ),
+
+                ListTile(
+                  leading: TextButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Register(),
+                          ));
+                    },
+                    icon: const Icon(
+                      Icons.settings,
+                      size: 24,
+                      color: Colors.black,
+                    ),
+                    label: const Text(
+                      'Test',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                )
 
                 //add more drawer menu here
               ],

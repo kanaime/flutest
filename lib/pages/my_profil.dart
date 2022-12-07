@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutest/commons/appBar.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutest/auth/authentification.dart';
 import '../commons/app_drawer.dart';
 
 class MyPageLogin extends StatelessWidget {
@@ -29,6 +29,13 @@ class MyPageLogin extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               user.email!,
+              style: const TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'bobo',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 40),
