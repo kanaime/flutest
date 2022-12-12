@@ -1,4 +1,5 @@
 import 'package:flutest/homepage/home_screen.dart';
+import 'package:flutest/pages/calendarPage/calendar_screen.dart';
 import 'package:flutest/pages/profile/profile_screen.dart';
 import 'package:flutest/state/enums.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,12 @@ class CustomBottomNavBar extends StatelessWidget {
                   }),
               IconButton(
                 icon: const Icon(Icons.calendar_today),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CalendarScreen()));
+                },
                 color: MenuState.calendar == selectedMenu
                     ? Colors.deepPurple
                     : inActiveIconColor,

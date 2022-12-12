@@ -12,10 +12,13 @@ class BodyHome extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            width: 100,
+            width: 150,
             height: 50,
-            color: Colors.blue,
-            child: Center(child: Text("Bonjour toto")),
+            child: Center(
+                child: Text(
+              "Bonjour toto",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            )),
           ),
         ),
         Padding(
@@ -29,7 +32,6 @@ class BodyHome extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    color: Colors.yellow,
                     child: Column(
                       children: [
                         Row(
@@ -98,7 +100,7 @@ class BodyHome extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(20)),
-                              height: 80,
+                              height: 100,
                             ),
                           ),
                         ),
@@ -110,7 +112,7 @@ class BodyHome extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(20)),
-                              height: 80,
+                              height: 100,
                             ),
                           ),
                         ),
