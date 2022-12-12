@@ -12,6 +12,7 @@ void main() {
 
 class Register extends StatelessWidget {
   const Register({Key? key}) : super(key: key);
+  static String routeName = '/register';
 
   // This widget is the root of your application.
   @override
@@ -39,7 +40,7 @@ class MainRegisterPage extends StatelessWidget {
           } else if (snapshot.hasError) {
             return const Center(child: Text('Something went wrong!'));
           } else if (snapshot.hasData) {
-            return const MyPageLogin();
+            return MyPageLogin();
           } else {
             return const RegisterWidget();
           }

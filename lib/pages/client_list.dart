@@ -56,8 +56,8 @@ class _ClientListState extends State<ClientList> {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
-                title: GetUserName(DocumentId: docIDs[index]),
-                subtitle: GetUserEmail(DocumentId: docIDs[index]),
+                title: Text('toto'),
+                subtitle: Text('toto'),
                 tileColor: Colors.grey,
               ),
             );

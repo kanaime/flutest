@@ -1,25 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutest/pages/logout_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutest/auth/authentification.dart';
 import 'package:flutest/pages/login.dart';
 
 Widget myAppBar(String title, BuildContext context) {
-  bool isLogged = true;
-
-  if (FirebaseAuth.instance.currentUser?.uid == null) {
-    setState() {
-      isLogged = false;
-    } // not logged
-  } else {
-    setState() {
-      isLogged = true;
-    }
-    // logged
-  }
-
   return AppBar(
-    backgroundColor: const Color.fromARGB(255, 28, 31, 26),
+    backgroundColor: const Color.fromARGB(255, 71, 33, 68),
     //background color of Appbar to green
     title: Text(title),
 
@@ -42,7 +28,7 @@ Widget myAppBar(String title, BuildContext context) {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const MyLogin(),
+                  builder: (context) => LogoutPage(),
                 ));
           },
         )
