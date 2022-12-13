@@ -7,7 +7,6 @@ import 'package:flutest/pages/my_profil.dart';
 import 'package:flutest/pages/profile/profile_screen.dart';
 import 'package:flutest/pages/registerPage/register_screen.dart';
 import 'package:flutest/pages/splashScreen/splash_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutest/commons/appBar.dart';

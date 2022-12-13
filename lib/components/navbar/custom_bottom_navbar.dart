@@ -1,6 +1,7 @@
 import 'package:flutest/homepage/home_screen.dart';
 import 'package:flutest/pages/calendarPage/calendar_screen.dart';
 import 'package:flutest/pages/profile/profile_screen.dart';
+import 'package:flutest/screens/home_page.dart';
 import 'package:flutest/state/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,8 +46,7 @@ class CustomBottomNavBar extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomePageScreen()),
+                      MaterialPageRoute(builder: (context) => HomePage()),
                     );
                   }),
               IconButton(
