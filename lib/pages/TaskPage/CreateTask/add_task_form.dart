@@ -18,7 +18,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
   var _selectedDate = DateTime.now();
   String? _startTime =
       DateFormat("hh:mm a", "fr_CH").format(DateTime.now()).toString();
-  String _endTime = "11:50";
+  String _endTime = "11:22";
 
   _getDatePicker() async {
     DateTime? _pickerDate = await showDatePicker(
@@ -51,14 +51,14 @@ class _AddTaskFormState extends State<AddTaskForm> {
     }
   }
 
-  _showTimePicker() {
+  _showTimePicker() async {
     return showTimePicker(
         initialEntryMode: TimePickerEntryMode.input,
         context: context,
         initialTime: TimeOfDay(
           //_startTime --> 10:30
           hour: int.parse(_startTime!.split(":")[0]),
-          minute: int.parse(_startTime!.split(":")[1]),
+          minute: int.parse(_startTime!.split(":")[1].split(" ")[0]),
         ));
   }
 
