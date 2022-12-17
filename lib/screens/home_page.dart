@@ -1,4 +1,6 @@
+import 'package:flutest/components/navbar/custom_bottom_navbar.dart';
 import 'package:flutest/screens/calendar_page.dart';
+import 'package:flutest/state/enums.dart';
 import 'package:flutest/theme/colors/light_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -206,6 +208,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
     );
   }
 }

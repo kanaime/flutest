@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Navbar extends StatelessWidget {
   Navbar({required this.text, required this.back});
   final String text;
-  final back;
+  final Widget back;
 
   @override
   Widget build(BuildContext context) {

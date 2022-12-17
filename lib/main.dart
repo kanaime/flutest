@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutest/commons/routes.dart';
+import 'package:flutest/pages/calendarPage/calendar_screen.dart';
 import 'package:flutest/pages/home.dart';
 import 'package:flutest/pages/loginPage/login_screen.dart';
 import 'package:flutest/pages/my_profil.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: SplashScreen(),
+      home: CalendarScreen(),
     );
   }
 }
